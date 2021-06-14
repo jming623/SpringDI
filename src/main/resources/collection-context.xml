@@ -36,6 +36,7 @@ http://www.springframework.org/schema/beans/spring-beans.xsd"
 			<map>
 				<entry key="k1" value="장발장"/>
 				<entry key="k2">
+					<!-- value가 bean으로 생성됨 -->
 					<bean class="ex05.MemberVO">
 						<property name="id" value="hhh123123"></property>
 						<property name="name" value="장발장발장"></property>
