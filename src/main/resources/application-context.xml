@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"  
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans  
+http://www.springframework.org/schema/beans/spring-beans.xsd"
+>
+	<bean id="test01" class="ex01.SpringTest"></bean> <!-- scope="prototype" 이걸 class속성뒤에 넣어주면 싱글톤형식으로 생성되지 않게된다.-->
+	
+	<!-- 두가지 의존성주입 방법 -->
+	
+	<!-- 방법1. DI생성자주입 -->
+	<bean id="chef" class="ex02.Chef"></bean>
+	
+	<bean id="hotel" class="ex02.Hotel">
+		<constructor-arg ref="chef"/>
+	</bean>
+	
+	<!-- 방법2. Setter를 이용해주입 -->
+	<bean id="dev" class="ex03.DatabaseDev">
+		<property name="url" value="데이터베이스주소"/>
+		<property name="uid" value="데이터베이스아이디"/>
+		<property name="upw" value="데이터베이스비밀번호"/>		
+	</bean>
+	
+	<bean id="memberDAO" class="ex03.MemberDAO">
+		<property name="dev" ref="dev"></property>
+		 <!-- bean속성을 property로 넣어주고싶다면(property로 객체를 받고싶다면) value속성이아닌 ref속성에 값을 넣어주어야한다. -->
+	</bean>
+	
+	<!-- 문제1. 생성자를 이용해 주입 -->
+	<bean id="battery1" class="ex04.Battery1"></bean>
+	
+	<bean id="car" class="ex04.Car">
+		<constructor-arg ref="battery1"/>
+	</bean>
+	
+	<!-- getter,setter를 이용해 주입 -->
+	<bean id="battery2" class="ex04.Battery2"></bean>
+	
+	<bean id="airplane" class="ex04.AirPlane">
+		<property name="battary" ref="battery2"></property>
+	</bean>
+	
+</beans>
